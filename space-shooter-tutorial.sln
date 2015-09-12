@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "space-shooter-tutorial.CSharp", "space-shooter-tutorial.CSharp.csproj", "{309B0FD5-0B5C-8C24-CBD5-508CE6AF76CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{309B0FD5-0B5C-8C24-CBD5-508CE6AF76CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{309B0FD5-0B5C-8C24-CBD5-508CE6AF76CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{309B0FD5-0B5C-8C24-CBD5-508CE6AF76CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{309B0FD5-0B5C-8C24-CBD5-508CE6AF76CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
