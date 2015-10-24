@@ -11,8 +11,8 @@ public class Boundary {
 public class PlayerController : MonoBehaviour {
 
     public float speed;
-    public Boundary boundary;
     public float tilt;
+    public Boundary boundary;
 
     public void FixedUpdate() {
         Rigidbody playerRigidBody = GetComponent<Rigidbody>();
