@@ -3,14 +3,20 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 
-    public GameObject hazard;
-    public Vector3 spawnValue;
     public int hazardCount;
+    public GameObject hazard;
+
+    public Vector3 spawnValue;
     public float spawnWait;
     public float startWait;
     public float waveWait;
 
+    public GUIText scoreText;
+    private int playerScore;
+
     public void Start() {
+        playerScore = 0;
+        UpdateScore();
         StartCoroutine(SpawnWave());
     }
 
@@ -29,5 +35,14 @@ public class GameController : MonoBehaviour {
 
             yield return new WaitForSeconds(waveWait);
         }
+    }
+
+    public void AddScore(int score) {
+        playerScore += score;
+        UpdateScore();
+    }
+
+    void UpdateScore() {
+        scoreText.text = "Score: " + playerScore;
     }
 }
