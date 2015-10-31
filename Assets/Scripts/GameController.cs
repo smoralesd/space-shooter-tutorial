@@ -12,19 +12,40 @@ public class GameController : MonoBehaviour {
     public float waveWait;
 
     public GUIText scoreText;
+
+    public GUIText resetText;
+    public GUIText gameOverText;
+
     private int playerScore;
+    private bool gameOver;
+    private bool restart;
 
     public void Start() {
         playerScore = 0;
+        gameOver = false;
+        restart = false;
+
+        resetText.text = "";
+        gameOverText.text = "";
+
         UpdateScore();
         StartCoroutine(SpawnWave());
+    }
+
+    public void Update() {
+
+        if (restart) {
+            if (Input.GetKeyDown(KeyCode.R)) {
+                Application.LoadLevel(Application.loadedLevel);
+            }
+        }
     }
 
     public IEnumerator SpawnWave() {
         yield return new WaitForSeconds(startWait);
 
         while (true) {
-            
+
             for (int i = 0; i < hazardCount; ++i) {
                 Vector3 spawnPosition = new Vector3(Random.Range(-spawnValue.x, spawnValue.x), spawnValue.y, spawnValue.z);
                 Quaternion spawnRotation = Quaternion.identity;
@@ -34,6 +55,12 @@ public class GameController : MonoBehaviour {
             }
 
             yield return new WaitForSeconds(waveWait);
+
+            if (gameOver) {
+                resetText.text = "Press 'R' to restart";
+                restart = true;
+                break;
+            }
         }
     }
 
@@ -44,5 +71,10 @@ public class GameController : MonoBehaviour {
 
     void UpdateScore() {
         scoreText.text = "Score: " + playerScore;
+    }
+
+    public void GameOver() {
+        gameOverText.text = "Game Over";
+        gameOver = true;
     }
 }
