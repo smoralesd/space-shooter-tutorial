@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 
 public class BackgroundScroller : MonoBehaviour {
 
@@ -7,12 +6,14 @@ public class BackgroundScroller : MonoBehaviour {
     private Vector3 startPosition;
 
     void Start() {
-        startPosition = transform.position;
+        Transform objectTransform = GetComponent<Transform>();
+        startPosition = objectTransform.position;
     }
 
-	void Update () {
-        float length = gameObject.transform.localScale.y;
+    void Update () {
+        Transform objectTransform = GetComponent<Transform>();
+        float length = objectTransform.localScale.y;
         float newPosition = Mathf.Repeat(Time.time * scrollSpeed, length);
-        transform.position = startPosition +  Vector3.forward * newPosition;
-	}
+        objectTransform.position = startPosition +  Vector3.forward * newPosition;
+    }
 }
