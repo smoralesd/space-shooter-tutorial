@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor;
 
 public class EvasiveManeuver : MonoBehaviour {
 
@@ -27,7 +26,6 @@ public class EvasiveManeuver : MonoBehaviour {
         while (true) {
             targetManeuver = Random.Range(1, dodge) * -Mathf.Sign(transform.position.x);
 
-            Debug.Log("target maneuver: " + targetManeuver);
             yield return new WaitForSeconds(Random.Range(maneuverTime.x, maneuverTime.y));
             targetManeuver = 0;
             yield return new WaitForSeconds(Random.Range(maneuverWait.x, maneuverWait.y));
@@ -37,7 +35,6 @@ public class EvasiveManeuver : MonoBehaviour {
     public void FixedUpdate() {
         float newManeuver = Mathf.MoveTowards(rb.velocity.x, targetManeuver, Time.deltaTime * smoothing);
         rb.velocity = new Vector3(newManeuver, 0.0f, rb.velocity.z);
-        Debug.Log("Velocity: " + rb.velocity);
 
         float clampX = Mathf.Clamp(rb.position.x, boundary.xMin, boundary.xMax);
         float clampZ = Mathf.Clamp(rb.position.z, boundary.zMin, boundary.zMax);
