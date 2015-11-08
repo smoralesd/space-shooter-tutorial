@@ -35,6 +35,9 @@ public class GameController : MonoBehaviour {
         while (true) {
 
             for (int i = 0; i < hazardCount; ++i) {
+                if (gameOver) {
+                    break;
+                }
                 Vector3 spawnPosition = new Vector3(Random.Range(-spawnValue.x, spawnValue.x), spawnValue.y, spawnValue.z);
                 Quaternion spawnRotation = Quaternion.identity;
                 int hazardIndex = Random.Range(0, hazards.Length);
@@ -44,12 +47,12 @@ public class GameController : MonoBehaviour {
                 yield return new WaitForSeconds(spawnWait);
             }
 
-            yield return new WaitForSeconds(waveWait);
-
             if (gameOver) {
                 restartButton.SetActive(true);
                 break;
             }
+
+            yield return new WaitForSeconds(waveWait);
         }
     }
 
