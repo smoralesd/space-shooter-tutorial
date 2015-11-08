@@ -19,13 +19,12 @@ public class PlayerController : MonoBehaviour {
     public float fireRate;
 
     public SimpleTouchPad touchPad;
-    public SimpleTouchAreaButton areaButton;
 
     private Quaternion calibrationQuaternion;
     private float nextShot = 0f;
 
     void Update() {
-        if (areaButton.CanFire() && Time.time > nextShot) {
+        if (Time.time > nextShot) {
             nextShot = Time.time + fireRate;
             Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
             AudioSource shotAudio = GetComponent<AudioSource>();
