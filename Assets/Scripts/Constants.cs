@@ -19,5 +19,25 @@ public static class Constants {
 
     public static float FireRate(FIRE_RATES type) {
         return FIRE_RATES_VALUES[(int)type];
-    } 
+    }
+
+    public static FIRE_RATES GetNextFireRate(FIRE_RATES current) {
+        FIRE_RATES result = current;
+        switch (current) {
+            case FIRE_RATES.FIRE_RATE_SLOWEST:
+                result = FIRE_RATES.FIRE_RATE_SLOW;
+                break;
+            case FIRE_RATES.FIRE_RATE_SLOW:
+                result = FIRE_RATES.FIRE_RATE_MEDIUM;
+                break;
+            case FIRE_RATES.FIRE_RATE_MEDIUM:
+                result = FIRE_RATES.FIRE_RATE_FAST;
+                break;
+            case FIRE_RATES.FIRE_RATE_FAST:
+                result = FIRE_RATES.FIRE_RATE_FASTEST;
+                break;
+        }
+
+        return result;
+    }
 }
