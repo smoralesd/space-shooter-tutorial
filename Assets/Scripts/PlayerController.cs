@@ -10,23 +10,25 @@ public class Boundary {
 
 public class PlayerController : MonoBehaviour {
 
-    public float speed;
     public float tilt;
     public Boundary boundary;
 
     public GameObject shot;
     public Transform shotSpawn;
     public Transform[] shotSpawns;
-    public Constants.FIRE_RATES fireRateType;
+    public Constants.RATES fireRate;
+    public Constants.RATES speed;
 
     public SimpleTouchPad touchPad;
 
-    private float fireRate;
+    private float speedValue;
+    private float fireRateValue;
     private Quaternion calibrationQuaternion;
     private float nextShot = 0f;
 
     void Start() {
         UpdateFireRate();
+        UpdateSpeed();
     }
 
     void Update() {
@@ -36,7 +38,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void ShotFire() {
-        nextShot = Time.time + fireRate;
+        nextShot = Time.time + fireRateValue;
         Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
         AudioSource shotAudio = GetComponent<AudioSource>();
         shotAudio.Play();
@@ -47,7 +49,7 @@ public class PlayerController : MonoBehaviour {
 
         Vector2 direction = touchPad.GetDirection();
         Vector3 movement = new Vector3(direction.x, 0.0f, direction.y);
-        playerRigidBody.velocity = speed * movement;
+        playerRigidBody.velocity = speedValue * movement;
 
         Vector3 currentPosition = playerRigidBody.position;
         float clampX = Mathf.Clamp(currentPosition.x, boundary.xMin, boundary.xMax);
@@ -58,6 +60,10 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void UpdateFireRate() {
-        fireRate = Constants.FireRate(fireRateType);
+        fireRateValue = UtilFunctions.GetFireRateValue(fireRate);
+    }
+
+    public void UpdateSpeed() {
+        speedValue = UtilFunctions.GetSpeedValue(speed);
     }
 }

@@ -3,7 +3,7 @@
 public class FireRateUp: BasePowerUp {
 
     protected override void Apply() {
-        playerController.fireRateType = Constants.GetNextFireRate(playerController.fireRateType);
+        playerController.fireRate = UtilFunctions.GetNextRate(playerController.fireRate);
         playerController.UpdateFireRate();
     }
 }
