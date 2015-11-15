@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-public abstract class BasePowerUp : MonoBehaviour {
+public abstract class BaseBoost : MonoBehaviour {
 
     public float speed;
 
@@ -26,4 +26,6 @@ public abstract class BasePowerUp : MonoBehaviour {
         }
 
     }
+
+    public abstract Constants.BOOST_TYPES GetBoostType(); 
 }

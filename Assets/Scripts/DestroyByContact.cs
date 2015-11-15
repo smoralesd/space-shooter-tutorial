@@ -28,6 +28,7 @@ public class DestroyByContact : MonoBehaviour {
         if (explosion != null) {
             Transform thisTransform = GetComponent<Transform>();
             Instantiate(explosion, thisTransform.position, thisTransform.rotation);
+            gameController.SpawnRandomBoost(thisTransform.position);
         }
 
         if (other.CompareTag("Player")) {
@@ -35,7 +36,7 @@ public class DestroyByContact : MonoBehaviour {
             Instantiate(playerExplosion, playerTransform.position, playerTransform.rotation);
             gameController.GameOver();
         }
-
+        
         gameController.AddScore(scoreValue);
         Destroy(other.gameObject);
         Destroy(gameObject);

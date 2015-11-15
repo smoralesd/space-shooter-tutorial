@@ -1,4 +1,5 @@
-﻿
+﻿using System.Collections.Generic;
+
 public static class Constants {
 
     public enum RATES {
@@ -26,4 +27,17 @@ public static class Constants {
         12f 
     };
 
+    public enum BOOST_TYPES {
+        FIRE_RATE,
+        SPEED
+    }
+
+    public const float GLOBAL_BOOST_RATE = 100f;
+
+    public static Dictionary<BOOST_TYPES, int> BOOSTS_RATES = new Dictionary<BOOST_TYPES, int>() {
+        { BOOST_TYPES.FIRE_RATE, 10},
+        { BOOST_TYPES.SPEED, 10}
+    };
+
+    public static int boostTotalWeight = 0;
 }

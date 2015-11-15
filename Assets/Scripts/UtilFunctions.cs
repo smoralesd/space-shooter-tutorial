@@ -1,4 +1,6 @@
-﻿
+﻿using UnityEngine;
+using System.Collections.Generic;
+
 public class UtilFunctions {
 
     public static Constants.RATES GetNextRate(Constants.RATES current) {
@@ -27,5 +29,26 @@ public class UtilFunctions {
 
     public static float GetSpeedValue(Constants.RATES type) {
         return Constants.SPEED_VALUES[(int)type];
-    }  
+    }
+
+    public static Constants.BOOST_TYPES GetRandomBoostType() {
+        if (Constants.boostTotalWeight == 0) {
+            foreach (int weight in Constants.BOOSTS_RATES.Values) {
+                Constants.boostTotalWeight += weight;
+            }
+        }
+
+        float rand = Random.Range(0, Constants.boostTotalWeight);
+        float accumulate = 0;
+
+        foreach (KeyValuePair<Constants.BOOST_TYPES, int> kv in Constants.BOOSTS_RATES) {
+            accumulate += kv.Value;
+
+            if (accumulate > rand) {
+                return kv.Key;
+            }
+        }
+
+        return Constants.BOOST_TYPES.SPEED;
+    }
 }

@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour {
     public Text scoreText;
     public Text gameOverText;
     public GameObject restartButton;
+    public BoostController boostController;
 
     private int playerScore;
     private bool gameOver;
@@ -72,5 +73,9 @@ public class GameController : MonoBehaviour {
 
     public void RestartGame() {
         Application.LoadLevel(Application.loadedLevel);
+    }
+
+    public void SpawnRandomBoost(Vector3 position) {
+        boostController.SpawnRandomBoost(position);
     }
 }
