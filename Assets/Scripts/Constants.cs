@@ -27,6 +27,7 @@ public static class Constants {
         12f 
     };
 
+
     public enum BOOST_TYPES {
         FIRE_RATE,
         SPEED
@@ -40,4 +41,12 @@ public static class Constants {
     };
 
     public static int boostTotalWeight = 0;
+
+    public enum WeaponTypes {
+        SINGLE_SHOT,
+        DOUBLE_SHOT,
+        TRIPLE_SHOT,
+        TRI_WAY,
+        FIVE_WAY
+    }
 }

@@ -13,35 +13,20 @@ public class PlayerController : MonoBehaviour {
     public float tilt;
     public Boundary boundary;
 
-    public GameObject shot;
     public Transform shotSpawn;
     public Transform[] shotSpawns;
-    public Constants.RATES fireRate;
     public Constants.RATES speed;
+    public PlayerWeaponController weaponController;
 
     public SimpleTouchPad touchPad;
 
     private float speedValue;
     private float fireRateValue;
     private Quaternion calibrationQuaternion;
-    private float nextShot = 0f;
 
     void Start() {
-        UpdateFireRate();
+        weaponController.UpdateFireRateValue();
         UpdateSpeed();
-    }
-
-    void Update() {
-        if (Time.time > nextShot) {
-            ShotFire();
-        }
-    }
-
-    private void ShotFire() {
-        nextShot = Time.time + fireRateValue;
-        Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
-        AudioSource shotAudio = GetComponent<AudioSource>();
-        shotAudio.Play();
     }
 
     public void FixedUpdate() {
@@ -59,8 +44,8 @@ public class PlayerController : MonoBehaviour {
         GetComponent<Rigidbody>().rotation = Quaternion.Euler(0.0f, 0.0f, playerRigidBody.velocity.x * -tilt);
     }
 
-    public void UpdateFireRate() {
-        fireRateValue = UtilFunctions.GetFireRateValue(fireRate);
+    public void FireRateUp() {
+        weaponController.FireRateUp();
     }
 
     public void UpdateSpeed() {

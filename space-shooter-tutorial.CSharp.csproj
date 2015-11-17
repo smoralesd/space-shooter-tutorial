@@ -74,17 +74,19 @@
     <Compile Include="Assets\Scripts\Boosts\FireRateUp.cs" />
     <Compile Include="Assets\Scripts\Boosts\SpeedUp.cs" />
     <Compile Include="Assets\Scripts\Constants.cs" />
-    <Compile Include="Assets\Scripts\DestroyByBoundary.cs" />
-    <Compile Include="Assets\Scripts\DestroyByContact.cs" />
-    <Compile Include="Assets\Scripts\DestroyByTime.cs" />
-    <Compile Include="Assets\Scripts\EvasiveManeuver.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\Hazards\DestroyByBoundary.cs" />
+    <Compile Include="Assets\Scripts\Hazards\DestroyByContact.cs" />
+    <Compile Include="Assets\Scripts\Hazards\DestroyByTime.cs" />
+    <Compile Include="Assets\Scripts\Hazards\EnemyWeaponController.cs" />
+    <Compile Include="Assets\Scripts\Hazards\EvasiveManeuver.cs" />
+    <Compile Include="Assets\Scripts\Hazards\Mover.cs" />
+    <Compile Include="Assets\Scripts\Hazards\RandomRotator.cs" />
     <Compile Include="Assets\Scripts\Input\SimpleTouchPad.cs" />
-    <Compile Include="Assets\Scripts\Mover.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\RandomRotator.cs" />
+    <Compile Include="Assets\Scripts\PlayerWeaponController.cs" />
+    <Compile Include="Assets\Scripts\ShotSpawnController.cs" />
     <Compile Include="Assets\Scripts\UtilFunctions.cs" />
-    <Compile Include="Assets\Scripts\WeaponController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

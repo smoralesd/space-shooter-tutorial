@@ -3,8 +3,7 @@
 public class FireRateUp: BaseBoost {
 
     protected override void Apply() {
-        playerController.fireRate = UtilFunctions.GetNextRate(playerController.fireRate);
-        playerController.UpdateFireRate();
+        playerController.FireRateUp();
     }
 
     public override Constants.BOOST_TYPES GetBoostType() {
