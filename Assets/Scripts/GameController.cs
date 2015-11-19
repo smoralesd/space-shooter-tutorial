@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GameController : MonoBehaviour {
@@ -11,34 +12,24 @@ public class GameController : MonoBehaviour {
     public float startWait;
     public float waveWait;
 
-    public GUIText scoreText;
-
-    public GUIText resetText;
-    public GUIText gameOverText;
+    public Text scoreText;
+    public Text playerSpeed;
+    public Text playerFireRate;
+    public Text gameOverText;
+    public GameObject restartButton;
+    public BoostController boostController;
 
     private int playerScore;
     private bool gameOver;
-    private bool restart;
 
     public void Start() {
         playerScore = 0;
-        gameOver = false;
-        restart = false;
 
-        resetText.text = "";
+        restartButton.SetActive(false);
         gameOverText.text = "";
 
         UpdateScore();
         StartCoroutine(SpawnWave());
-    }
-
-    public void Update() {
-
-        if (restart) {
-            if (Input.GetKeyDown(KeyCode.R)) {
-                Application.LoadLevel(Application.loadedLevel);
-            }
-        }
     }
 
     public IEnumerator SpawnWave() {
@@ -47,22 +38,31 @@ public class GameController : MonoBehaviour {
         while (true) {
 
             for (int i = 0; i < hazardCount; ++i) {
+                if (gameOver) {
+                    break;
+                }
                 Vector3 spawnPosition = new Vector3(Random.Range(-spawnValue.x, spawnValue.x), spawnValue.y, spawnValue.z);
                 Quaternion spawnRotation = Quaternion.identity;
                 int hazardIndex = Random.Range(0, hazards.Length);
                 GameObject hazard = hazards[hazardIndex];
-                Instantiate(hazard, spawnPosition, spawnRotation);
+                if (hazard != null) {
+                    //Debug.Log("hazard: " + hazard);
+                    //Debug.Log("position: " + spawnPosition);
+                    //Debug.Log("rotation: " + spawnRotation);
+                    Instantiate(hazard, spawnPosition, spawnRotation);
+                } else {
+                    Debug.Log("no hazard found for index: " + hazardIndex);
+                }
 
                 yield return new WaitForSeconds(spawnWait);
             }
 
-            yield return new WaitForSeconds(waveWait);
-
             if (gameOver) {
-                resetText.text = "Press 'R' to restart";
-                restart = true;
+                restartButton.SetActive(true);
                 break;
             }
+
+            yield return new WaitForSeconds(waveWait);
         }
     }
 
@@ -78,5 +78,21 @@ public class GameController : MonoBehaviour {
     public void GameOver() {
         gameOverText.text = "Game Over";
         gameOver = true;
+    }
+
+    public void RestartGame() {
+        Application.LoadLevel(Application.loadedLevel);
+    }
+
+    public void SpawnRandomBoost(Vector3 position) {
+        boostController.SpawnRandomBoost(position);
+    }
+
+    public void SetSpeedText(string speed) {
+        playerSpeed.text = "Speed: " + speed;
+    }
+
+    public void SetFireRateText(string fireRate) {
+        playerFireRate.text = "Fire Rate: " + fireRate;
     }
 }

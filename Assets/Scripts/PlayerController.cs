@@ -10,34 +10,34 @@ public class Boundary {
 
 public class PlayerController : MonoBehaviour {
 
-    public float speed;
     public float tilt;
     public Boundary boundary;
 
-    public GameObject shot;
     public Transform shotSpawn;
-    public float fireRate;
+    public Transform[] shotSpawns;
+    public Constants.RATES speed;
+    public PlayerWeaponController weaponController;
+    public SimpleTouchPad touchPad;
 
-    private float nextShot = 0f;
+    private float speedValue;
+    private GameController gameController;
 
-    void Update() {
-        if (Input.GetButton("Fire1") && Time.time > nextShot) {
-            nextShot = Time.time + fireRate;
-            Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
-            AudioSource shotAudio = GetComponent<AudioSource>();
-            shotAudio.Play();
+    void Start() {
+        GameObject gameControllerObject = GameObject.FindWithTag("GameController"); 
+        if (gameControllerObject != null) {
+            gameController = gameControllerObject.GetComponent<GameController>();
         }
+
+        weaponController.UpdateFireRateValue();
+        UpdateSpeed();
     }
 
     public void FixedUpdate() {
         Rigidbody playerRigidBody = GetComponent<Rigidbody>();
 
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-
-        Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
-
-        playerRigidBody.velocity = speed * movement;
+        Vector2 direction = touchPad.GetDirection();
+        Vector3 movement = new Vector3(direction.x, 0.0f, direction.y);
+        playerRigidBody.velocity = speedValue * movement;
 
         Vector3 currentPosition = playerRigidBody.position;
         float clampX = Mathf.Clamp(currentPosition.x, boundary.xMin, boundary.xMax);
@@ -45,5 +45,19 @@ public class PlayerController : MonoBehaviour {
         playerRigidBody.position = new Vector3(clampX, 0, clampZ);
 
         GetComponent<Rigidbody>().rotation = Quaternion.Euler(0.0f, 0.0f, playerRigidBody.velocity.x * -tilt);
+    }
+
+    public void FireRateUp() {
+        weaponController.FireRateUp();
+    }
+
+    public void UpdateSpeed() {
+        speedValue = UtilFunctions.GetSpeedValue(speed);
+        int speedToText = (int)speed + 1;
+        gameController.SetSpeedText(speedToText + "");
+    }
+
+    public void SetWeaponType(Constants.WEAPON_TYPES type) {
+        weaponController.SetWeaponType(type);
     }
 }
