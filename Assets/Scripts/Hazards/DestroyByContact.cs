@@ -21,7 +21,7 @@ public class DestroyByContact : MonoBehaviour {
     }
 
     public void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("Boundary") || other.CompareTag("Enemy")) {
+        if (!ShouldInteractWith(other)) {
             return;
         }
 
@@ -40,5 +40,9 @@ public class DestroyByContact : MonoBehaviour {
         gameController.AddScore(scoreValue);
         Destroy(other.gameObject);
         Destroy(gameObject);
+    }
+
+    private bool ShouldInteractWith(Collider other) {
+        return !(other.CompareTag("Boundary") || other.CompareTag("Enemy") || other.CompareTag("Boost"));
     }
 };

@@ -11,11 +11,11 @@ public static class Constants {
     };
 
     public static float[] FIRE_RATES_VALUES = new float [5] {
-        0.75f,
-        0.65f,
+        0.7f,
+        0.6f,
         0.5f,
-        0.25f,
-        0.1f
+        0.4f,
+        0.2f
         };
 
 

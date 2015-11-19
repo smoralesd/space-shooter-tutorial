@@ -8,7 +8,6 @@ public class PlayerWeaponController : MonoBehaviour {
     public ShotSpawnController[] shotSpawns;
     public Constants.WeaponTypes currentWeapon;
 
-    private int shotSpawnIndex = 1;
     private float fireRateValue;
     private float nextShot = 0f;
     private Dictionary<Constants.WeaponTypes, ShotSpawnController> availableShotSpawns;

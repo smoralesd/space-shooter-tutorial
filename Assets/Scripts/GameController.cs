@@ -43,7 +43,14 @@ public class GameController : MonoBehaviour {
                 Quaternion spawnRotation = Quaternion.identity;
                 int hazardIndex = Random.Range(0, hazards.Length);
                 GameObject hazard = hazards[hazardIndex];
-                Instantiate(hazard, spawnPosition, spawnRotation);
+                if (hazard != null) {
+                    //Debug.Log("hazard: " + hazard);
+                    //Debug.Log("position: " + spawnPosition);
+                    //Debug.Log("rotation: " + spawnRotation);
+                    Instantiate(hazard, spawnPosition, spawnRotation);
+                } else {
+                    Debug.Log("no hazard found for index: " + hazardIndex);
+                }
 
                 yield return new WaitForSeconds(spawnWait);
             }
