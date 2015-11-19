@@ -53,7 +53,8 @@ public class PlayerController : MonoBehaviour {
 
     public void UpdateSpeed() {
         speedValue = UtilFunctions.GetSpeedValue(speed);
-        gameController.SetSpeedText(((int)speed) + "");
+        int speedToText = (int)speed + 1;
+        gameController.SetSpeedText(speedToText + "");
     }
 
     public void SetWeaponType(Constants.WEAPON_TYPES type) {

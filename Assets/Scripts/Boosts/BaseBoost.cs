@@ -14,8 +14,6 @@ public abstract class BaseBoost : MonoBehaviour {
         GameObject playerControllerObject = GameObject.FindWithTag("Player");
         if (playerControllerObject != null) {
             playerController = playerControllerObject.GetComponent<PlayerController>();
-        } else {
-            Debug.LogWarning("No PlayerController object found");
         }
     }
 

@@ -3,11 +3,11 @@
 public static class Constants {
 
     public enum RATES {
-        SLOWEST = 1,
-        SLOW = 2,
-        MEDIUM = 3,
-        FAST = 4,
-        FASTEST = 5
+        SLOWEST = 0,
+        SLOW,
+        MEDIUM,
+        FAST,
+        FASTEST
     };
 
     public static float[] FIRE_RATES_VALUES = new float [5] {

@@ -56,7 +56,8 @@ public class PlayerWeaponController : MonoBehaviour {
 
     public void UpdateFireRateValue() {
         fireRateValue = UtilFunctions.GetFireRateValue(fireRate);
-        gameController.SetFireRateText(((int)fireRate) + "");
+        int fireRateToText = (int)fireRate + 1;
+        gameController.SetFireRateText(fireRateToText + "");
     }
 
     public void FireRateUp() {
