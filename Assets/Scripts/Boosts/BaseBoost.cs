@@ -11,9 +11,11 @@ public abstract class BaseBoost : MonoBehaviour {
 
         GetComponent<Rigidbody>().velocity = GetComponent<Transform>().forward * speed;
 
-        GameObject playerControllerObject = GameObject.FindWithTag("Player"); 
+        GameObject playerControllerObject = GameObject.FindWithTag("Player");
         if (playerControllerObject != null) {
             playerController = playerControllerObject.GetComponent<PlayerController>();
+        } else {
+            Debug.LogWarning("No PlayerController object found");
         }
     }
 

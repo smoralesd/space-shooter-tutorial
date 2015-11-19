@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-
+﻿
 public class FireRateUp: BaseBoost {
 
     protected override void Apply() {

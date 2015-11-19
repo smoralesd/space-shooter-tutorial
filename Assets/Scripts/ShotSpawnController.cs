@@ -2,6 +2,6 @@
 
 public class ShotSpawnController : MonoBehaviour {
 
-    public Constants.WeaponTypes type;
+    public Constants.WEAPON_TYPES type;
     public Transform[] shotSpawn;
 }

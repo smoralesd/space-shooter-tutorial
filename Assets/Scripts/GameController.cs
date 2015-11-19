@@ -13,6 +13,8 @@ public class GameController : MonoBehaviour {
     public float waveWait;
 
     public Text scoreText;
+    public Text playerSpeed;
+    public Text playerFireRate;
     public Text gameOverText;
     public GameObject restartButton;
     public BoostController boostController;
@@ -84,5 +86,13 @@ public class GameController : MonoBehaviour {
 
     public void SpawnRandomBoost(Vector3 position) {
         boostController.SpawnRandomBoost(position);
+    }
+
+    public void SetSpeedText(string speed) {
+        playerSpeed.text = "Speed: " + speed;
+    }
+
+    public void SetFireRateText(string fireRate) {
+        playerFireRate.text = "Fire Rate: " + fireRate;
     }
 }

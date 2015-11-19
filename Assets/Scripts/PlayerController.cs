@@ -17,14 +17,17 @@ public class PlayerController : MonoBehaviour {
     public Transform[] shotSpawns;
     public Constants.RATES speed;
     public PlayerWeaponController weaponController;
-
     public SimpleTouchPad touchPad;
 
     private float speedValue;
-    private float fireRateValue;
-    private Quaternion calibrationQuaternion;
+    private GameController gameController;
 
     void Start() {
+        GameObject gameControllerObject = GameObject.FindWithTag("GameController"); 
+        if (gameControllerObject != null) {
+            gameController = gameControllerObject.GetComponent<GameController>();
+        }
+
         weaponController.UpdateFireRateValue();
         UpdateSpeed();
     }
@@ -50,5 +53,10 @@ public class PlayerController : MonoBehaviour {
 
     public void UpdateSpeed() {
         speedValue = UtilFunctions.GetSpeedValue(speed);
+        gameController.SetSpeedText(((int)speed) + "");
+    }
+
+    public void SetWeaponType(Constants.WEAPON_TYPES type) {
+        weaponController.SetWeaponType(type);
     }
 }

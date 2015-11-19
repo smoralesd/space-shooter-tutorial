@@ -3,11 +3,11 @@
 public static class Constants {
 
     public enum RATES {
-        SLOWEST = 0,
-        SLOW,
-        MEDIUM,
-        FAST,
-        FASTEST
+        SLOWEST = 1,
+        SLOW = 2,
+        MEDIUM = 3,
+        FAST = 4,
+        FASTEST = 5
     };
 
     public static float[] FIRE_RATES_VALUES = new float [5] {
@@ -30,23 +30,30 @@ public static class Constants {
 
     public enum BOOST_TYPES {
         FIRE_RATE,
-        SPEED
+        SPEED,
+        WEAPON
     }
 
-    public const float GLOBAL_BOOST_RATE = 100f;
+    public const float GLOBAL_BOOST_RATE = 20f;
 
     public static Dictionary<BOOST_TYPES, int> BOOSTS_RATES = new Dictionary<BOOST_TYPES, int>() {
-        { BOOST_TYPES.FIRE_RATE, 10},
-        { BOOST_TYPES.SPEED, 10}
+        { BOOST_TYPES.FIRE_RATE, 30},
+        { BOOST_TYPES.SPEED, 50},
+        { BOOST_TYPES.WEAPON, 20}
     };
 
-    public static int boostTotalWeight = 0;
-
-    public enum WeaponTypes {
+    public enum WEAPON_TYPES {
         SINGLE_SHOT,
         DOUBLE_SHOT,
         TRIPLE_SHOT,
         TRI_WAY,
         FIVE_WAY
     }
+
+    public static Dictionary<WEAPON_TYPES, int> WEAPON_RATES = new Dictionary<WEAPON_TYPES, int>() {
+        { WEAPON_TYPES.DOUBLE_SHOT, 30},
+        { WEAPON_TYPES.TRIPLE_SHOT, 10},
+        { WEAPON_TYPES.TRI_WAY, 30},
+        { WEAPON_TYPES.FIVE_WAY, 5}
+    };
 }

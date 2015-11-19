@@ -31,14 +31,16 @@ public class UtilFunctions {
         return Constants.SPEED_VALUES[(int)type];
     }
 
+    private static int boostTotalWeight = 0;
+
     public static Constants.BOOST_TYPES GetRandomBoostType() {
-        if (Constants.boostTotalWeight == 0) {
+        if (boostTotalWeight == 0) {
             foreach (int weight in Constants.BOOSTS_RATES.Values) {
-                Constants.boostTotalWeight += weight;
+                boostTotalWeight += weight;
             }
         }
 
-        float rand = Random.Range(0, Constants.boostTotalWeight);
+        float rand = Random.Range(0, boostTotalWeight);
         float accumulate = 0;
 
         foreach (KeyValuePair<Constants.BOOST_TYPES, int> kv in Constants.BOOSTS_RATES) {
@@ -50,5 +52,28 @@ public class UtilFunctions {
         }
 
         return Constants.BOOST_TYPES.SPEED;
+    }
+
+    private static int weaponTotalWeight = 0;
+
+    public static Constants.WEAPON_TYPES GetRandomWeaponType() {
+        if (weaponTotalWeight == 0) {
+            foreach (int weight in Constants.WEAPON_RATES.Values) {
+                weaponTotalWeight += weight;
+            }
+        }
+
+        float rand = Random.Range(0, weaponTotalWeight);
+        float accumulate = 0;
+
+        foreach (KeyValuePair<Constants.WEAPON_TYPES, int> kv in Constants.WEAPON_RATES) {
+            accumulate += kv.Value;
+
+            if (accumulate > rand) {
+                return kv.Key;
+            }
+        }
+
+        return Constants.WEAPON_TYPES.DOUBLE_SHOT;
     }
 }

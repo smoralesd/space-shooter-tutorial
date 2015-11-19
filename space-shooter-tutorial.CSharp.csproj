@@ -70,9 +70,14 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\BackgroundScroller.cs" />
     <Compile Include="Assets\Scripts\Boosts\BaseBoost.cs" />
+    <Compile Include="Assets\Scripts\Boosts\BaseWeaponBoost.cs" />
     <Compile Include="Assets\Scripts\Boosts\BoostController.cs" />
     <Compile Include="Assets\Scripts\Boosts\FireRateUp.cs" />
     <Compile Include="Assets\Scripts\Boosts\SpeedUp.cs" />
+    <Compile Include="Assets\Scripts\Boosts\WeaponDoubleShot.cs" />
+    <Compile Include="Assets\Scripts\Boosts\WeaponFiveWay.cs" />
+    <Compile Include="Assets\Scripts\Boosts\WeaponTriWay.cs" />
+    <Compile Include="Assets\Scripts\Boosts\WeaponTripleShot.cs" />
     <Compile Include="Assets\Scripts\Constants.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\Hazards\DestroyByBoundary.cs" />

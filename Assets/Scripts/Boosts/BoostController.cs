@@ -7,13 +7,24 @@ public class BoostController : MonoBehaviour {
     private GameObject[] gameObjectBoosts;
 
     private Dictionary<Constants.BOOST_TYPES, GameObject> availableBoosts;
+    private Dictionary<Constants.WEAPON_TYPES, GameObject> availableWeapons;
 
     void Start() {
+
         if (gameObjectBoosts != null && gameObjectBoosts.Length > 0) {
-            availableBoosts = new Dictionary<Constants.BOOST_TYPES, GameObject>(gameObjectBoosts.Length);
+            availableBoosts = new Dictionary<Constants.BOOST_TYPES, GameObject>();
+            availableWeapons = new Dictionary<Constants.WEAPON_TYPES, GameObject>();
+
             for (int i = 0; i < gameObjectBoosts.Length; ++i) {
                 BaseBoost baseBoost = gameObjectBoosts[i].GetComponent<BaseBoost>();
-                availableBoosts.Add(baseBoost.GetBoostType(), gameObjectBoosts[i]);
+                Constants.BOOST_TYPES type = baseBoost.GetBoostType();
+
+                if (type == Constants.BOOST_TYPES.WEAPON) {
+                    BaseWeaponBoost weaponBoost = baseBoost as BaseWeaponBoost;
+                    availableWeapons.Add(weaponBoost.GetWeaponType(), gameObjectBoosts[i]); 
+                } else {
+                    availableBoosts.Add(baseBoost.GetBoostType(), gameObjectBoosts[i]);
+                }
             }
         }
     }
@@ -23,7 +34,15 @@ public class BoostController : MonoBehaviour {
 
         if (spawnRand <= Constants.GLOBAL_BOOST_RATE) {
             Constants.BOOST_TYPES boostType = UtilFunctions.GetRandomBoostType();
-            GameObject boost = availableBoosts[boostType];
+            GameObject boost;
+            
+            if (boostType == Constants.BOOST_TYPES.WEAPON) {
+                Constants.WEAPON_TYPES weaponType = UtilFunctions.GetRandomWeaponType();
+                boost = availableWeapons[weaponType];
+            } else {
+                boost = availableBoosts[boostType];
+            }
+
             //TODO use the same position the original object was
             Instantiate(boost, position, Quaternion.identity);
         }

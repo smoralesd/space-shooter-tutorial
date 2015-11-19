@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
+﻿
 public class SpeedUp : BaseBoost {
 
     protected override void Apply() {
